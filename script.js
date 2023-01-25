@@ -3,9 +3,6 @@ var desencriptar = document.querySelector(".btn-desencriptar");
 var copiar = document.querySelector(".copiar");
 
 var nuevoTexto = "";
-
-var comprobacionVacio = document.querySelector(".text-area").value;
-
 function encriptarTexto(){
 
     document.getElementById("mensajes").style.display = "none";
@@ -32,7 +29,6 @@ function copiarTexto(){
     textoCopiado.select();
     document.execCommand('copy');
 }
-
 encriptar.onclick = encriptarTexto
 desencriptar.onclick = desencriptarTexto
 copiar.onclick = copiarTexto

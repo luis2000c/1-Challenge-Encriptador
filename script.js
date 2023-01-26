@@ -2,7 +2,7 @@ var encriptar = document.querySelector(".btn-encriptar");
 var desencriptar = document.querySelector(".btn-desencriptar");
 var copiar = document.querySelector(".copiar");
 
-var nuevoTexto = "";
+
 function encriptarTexto(){
 
     document.getElementById("mensajes").style.display = "none";
@@ -12,16 +12,28 @@ function encriptarTexto(){
     navigator.clipboard.writeText(texto)
 
     /*Encriptando*/
-    nuevoTexto = texto.replace("e","enter").replace("i","imes").replace("a","ai").replace("o","ober").replace("u","ufat")
+    var nuevoTexto = texto.replace(/e/gi,"enter").replace(/i/gi,"imes").replace(/a/gi,"ai").replace(/o/gi,"ober").replace(/u/gi,"ufat")
     navigator.clipboard.readText().then(texto=>{
         document.querySelector(".mensaje").value = nuevoTexto
     })
 }
 
 function desencriptarTexto(){
-    var contMensajeDesencriptado = nuevoTexto.replace("enter","e").replace("imes","i").replace("ai","a").replace("ober","o").replace("ufat","u")
+    
+    var textoDesencriptar = document.querySelector(".text-area").value;
+    navigator.clipboard.writeText(textoDesencriptar);
 
-    document.querySelector(".mensaje").value = contMensajeDesencriptado
+    /*Desencriptar*/
+    var textoDesencriptado = textoDesencriptar.replace(/enter/gi,"e").replace(/imes/gi,"i").replace(/ai/gi,"a").replace(/ober/gi,"o").replace(/ufat/gi,"u")
+    
+    /*Retirar Elementos*/
+    document.getElementById("mensajes").style.display = "none";
+    document.getElementById("imagen-muneco").style.backgroundImage = "none";
+    document.getElementById("btn-copiar").style.display = "block";
+    /* */
+    document.querySelector(".mensaje").value = textoDesencriptado
+    
+    
 }
 
 function copiarTexto(){
